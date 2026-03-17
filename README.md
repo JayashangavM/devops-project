@@ -25,3 +25,6 @@ git remote add origin https://github.com/JayashangavM/devops-project.git
 ✅ 7. Push your code
 git branch -M main
 git push -u origin main
+
+👉 Version control using GitHub is the process of tracking and managing 
+changes in project files using Git and storing them in a remote repository on GitHub.
