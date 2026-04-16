@@ -1,23 +1,182 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>DevOps Project</title>
+    <title>DevOps Project Dashboard</title>
+    <style>
+        body {
+            font-family: Arial;
+            margin: 0;
+            background: #2c3e50;
+            color: white;
+        }
+
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .box {
+            background: #34495e;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            width: 80%;
+            max-width: 800px;
+        }
+
+        input {
+            padding: 10px;
+            margin: 10px;
+            width: 200px;
+            text-align: center;
+        }
+
+        button {
+            padding: 10px 15px;
+            background: orange;
+            border: none;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        #dashboard {
+            display: none;
+            padding: 20px;
+        }
+
+        .section {
+            background: #3d566e;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            text-align: left;
+        }
+
+        .calc button {
+            width: 50px;
+            height: 40px;
+            margin: 5px;
+        }
+
+        .calc input {
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
 
-    <h1>DevOps Project - GitHub Repository</h1>
+<!-- LOGIN -->
+<!-- LOGIN -->
+<div id="login" class="center">
+    <div class="box">
+        <h1>🚀 DevOps Project</h1>
+        <p>GitHub + Docker + AWS Pipeline</p>
 
-    <p>This project demonstrates how to initialize a Git repository and push code to GitHub.</p>
+        <h2>Login</h2>
 
-    <h2>Steps Performed</h2>
-    <ul>
-        <li>Initialized local repository using Git</li>
-        <li>Added project files</li>
-        <li>Committed changes</li>
-        <li>Pushed to GitHub</li>
-    </ul>
+        <input type="text" id="username" placeholder="Username"><br>
+        <input type="password" id="password" placeholder="Password"><br>
 
-    <p>Status: Successfully Completed</p>
+        <button onclick="login()">Login</button>
+
+        <p id="error" style="color: red;"></p>
+    </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard">
+    <h1>🚀 DevOps Project Dashboard</h1>
+    <p>Welcome, <span id="user"></span></p>
+    <button onclick="logout()">Logout</button>
+
+    <!-- Problem Statement -->
+    <div class="section">
+        <h2>📌 Problem Statement</h2>
+        <p>
+            This project demonstrates how to implement version control using GitHub
+            and deploy a web application using Docker and AWS.
+        </p>
+    </div>
+
+    <!-- Git Commands -->
+    <div class="section">
+        <h2>💻 Git Commands Used</h2>
+        <ul>
+            <li>git init</li>
+            <li>git add .</li>
+            <li>git commit -m "Initial commit"</li>
+            <li>git remote add origin &lt;repo-url&gt;</li>
+            <li>git push -u origin main</li>
+        </ul>
+    </div>
+
+    <!-- Calculator -->
+    <div class="section">
+        <h2>🧮 Calculator</h2>
+        <input type="text" id="display" disabled><br>
+
+        <div class="calc">
+            <button onclick="append('7')">7</button>
+            <button onclick="append('8')">8</button>
+            <button onclick="append('9')">9</button>
+            <button onclick="append('/')">/</button><br>
+
+            <button onclick="append('4')">4</button>
+            <button onclick="append('5')">5</button>
+            <button onclick="append('6')">6</button>
+            <button onclick="append('*')">*</button><br>
+
+            <button onclick="append('1')">1</button>
+            <button onclick="append('2')">2</button>
+            <button onclick="append('3')">3</button>
+            <button onclick="append('-')">-</button><br>
+
+            <button onclick="append('0')">0</button>
+            <button onclick="append('.')">.</button>
+            <button onclick="calculate()">=</button>
+            <button onclick="append('+')">+</button><br>
+
+            <button onclick="clearDisplay()">C</button>
+        </div>
+    </div>
+</div>
+
+<script>
+function login() {
+    let user = document.getElementById("username").value;
+    let pass = document.getElementById("password").value;
+
+    if(user === "jayashangav" && pass === "1234") {
+        document.getElementById("login").style.display = "none";
+        document.getElementById("dashboard").style.display = "block";
+        document.getElementById("user").innerText = user;
+    } else {
+        document.getElementById("error").innerText = "Invalid Login!";
+    }
+}
+
+function logout() {
+    location.reload();
+}
+
+function append(val) {
+    document.getElementById("display").value += val;
+}
+
+function calculate() {
+    try {
+        document.getElementById("display").value = eval(document.getElementById("display").value);
+    } catch {
+        document.getElementById("display").value = "Error";
+    }
+}
+
+function clearDisplay() {
+    document.getElementById("display").value = "";
+}
+</script>
 
 </body>
 </html>
