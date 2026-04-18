@@ -68,3 +68,5 @@ sudo docker run -d -p 80:80 devops-project
 
 🔟 Check container
 sudo docker ps
+
+http://13.61.105.238/
